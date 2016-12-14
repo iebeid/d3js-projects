@@ -1,30 +1,11 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="http://d3js.org/d3.v3.min.js"></script>
-        <style>
-            .chartDiv div {
-                font: 10px sans-serif;
-                background-color: steelblue;
-                text-align: right;
-                padding: 3px;
-                margin: 1px;
-                color: white;
-            }
-        </style>
-    </head>
-    <body>
-        <div id="chart"></div>
-        <script>
-            var width = 1024,
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+
+var width = 1024,
                     height = 1024;
             var div = d3.select('#chart');
             var svg = div.append('svg')
@@ -157,21 +138,3 @@ and open the template in the editor.
                     return "Source: " + d.x + " \nTarget: " + d.y + " \nValue: " + d.z + " \nSourceSequence: " + d.source + " \nTargetSequence: " + d.target;
                 });
             }
-        </script>
-        <div class="chartDiv">
-            <script>
-                var data = [4, 8, 15, 16, 23, 42];
-                d3.select(".chartDiv")
-                        .selectAll("div")
-                        .data(data)
-                        .enter().append("div")
-                        .style("width", function (d) {
-                            return d * 10 + "px";
-                        })
-                        .text(function (d) {
-                            return d;
-                        });
-            </script>
-        </div>
-    </body>
-</html>

@@ -1,35 +1,10 @@
-<!DOCTYPE html>
-<meta charset="utf-8">
-<title>Les Misérables Co-occurrence</title>
-<style>
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-@import url(style.css?20120427);
 
-.background {
-  fill: #eee;
-}
-
-line {
-  stroke: #fff;
-}
-
-text.active {
-  fill: red;
-}
-
-</style>
-<script src="http://d3js.org/d3.v3.min.js"></script>
-<h1><i>Les Misérables</i> Co-occurrence</h1>
-
-<aside style="margin-top:80px;">
-<p>Order: <select id="order">
-  <option value="name">by Name</option>
-  <option value="count">by Frequency</option>
-  <option value="group">by Cluster</option>
-</select>
-</aside>
-
-<script>
 
 var margin = {top: 80, right: 0, bottom: 10, left: 80},
     width = 720,
@@ -166,5 +141,3 @@ d3.json("miserables.json", function(miserables) {
     d3.select("#order").property("selectedIndex", 2).node().focus();
   }, 5000);
 });
-
-</script>
