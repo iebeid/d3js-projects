@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/three.js"></script>
+        <script src="js/Detector.js"></script>
+        <script src="js/stats.min.js"></script>
+  
+        		<style>
+			body {
+				margin: 0px;
+				background-color: #000000;
+				overflow: hidden;
+			}
+		</style>
+    </head>
+    <body>
+        <div><script>
+
+
+                        if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+                        var apps = [];
+                        var cameraLeft, cameraRight, scene, renderer;
+			var mesh;
+			init();
+			animate();
+
+			function init() {
+                                
+				renderer = new THREE.WebGLRenderer();
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				document.body.appendChild( renderer.domElement );
+
+				//
+                                
+                                
+                                var w = window.innerWidth
+                                var h = window.innerHeight        
+                                var fullWidth = w * 1;
+                                var fullHeight = h * 1;
+                                
+				cameraLeft = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 1000 );
+				cameraLeft.position.z = 400;
+                                cameraLeft.setViewOffset(fullWidth, fullHeight, w * 0, h * 0, w, h);
+                                
+                                //cameraRight = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 1000 );
+                                //cameraRight.position.z = 400;
+                                //cameraLeft.setViewOffset(fullWidth, fullHeight, w * 0, h * 0, w, h);
+
+				scene = new THREE.Scene();
+                                //scene.add(cameraLeft);
+
+				var geometry = new THREE.BoxGeometry( 200, 200, 200 );
+
+				var texture = THREE.ImageUtils.loadTexture( 'textures/crate.gif' );
+				texture.anisotropy = renderer.getMaxAnisotropy();
+
+				var material = new THREE.MeshBasicMaterial( { map: texture } );
+
+				mesh = new THREE.Mesh( geometry, material );
+				scene.add( mesh );
+
+				//
+
+				window.addEventListener( 'resize', onWindowResize, false );
+
+			}
+
+			function onWindowResize() {
+				cameraLeft.aspect = window.innerWidth / window.innerHeight;
+				cameraLeft.updateProjectionMatrix();
+                            	//cameraRight.aspect = window.innerWidth / window.innerHeight;
+				//cameraRight.updateProjectionMatrix();
+				renderer.setSize( window.innerWidth, window.innerHeight );
+			}
+                        
+                        function isOdd(num) { return num % 2;}
+
+			function animate() {
+				var id = requestAnimationFrame( animate );
+                                //console.log(id);
+				mesh.rotation.x += 0.005;
+				mesh.rotation.y += 0.01;
+                                //if(isOdd(id)){
+                                    renderer.render(scene, cameraLeft);
+                                    //console.log("left");
+                                //}
+                                //else{
+                                    //renderer.render(scene, cameraRight);
+                                    //console.log("right");
+                                //}
+			}
+
+		</script>
+</div>
+    </body>
+</html>
